@@ -1,0 +1,28 @@
+const express = require('express');
+const twilio = require('twilio');
+
+const app = express();
+app.use(express.urlencoded({ extended: false }));
+
+const accountSid = 'your_twilio_sid';
+const authToken = 'your_twilio_token';
+const client = twilio(accountSid, authToken);
+const whatsappNumber = 'whatsapp:+233594331359'; // your Twilio WhatsApp number
+
+app.post('/whatsapp', (req, res) => {
+  const message = req.body.Body;
+  const sender = req.body.From;
+
+  if (message.toLowerCase() === 'hi') {
+    client.messages.create({
+      from: whatsappNumber,
+      body: 'Hello! How can I help?',
+      to: sender
+    });
+  }
+
+  res.send('<Response></Response>');
+});
+
+app.listen(3000, () => console.log('Server running on port 3000'));
+app.post
