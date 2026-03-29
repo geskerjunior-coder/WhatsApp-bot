@@ -30,7 +30,7 @@ app.post('/whatsapp', (req, res) => {
 
   if (message.toLowerCase() === 'hi') {
     client.messages.create({
-      from: whatsappNumber,
+      from: whatsappNumber,+14155238886
       body: 'Hello! How can I help?',
       to: sender
     });
